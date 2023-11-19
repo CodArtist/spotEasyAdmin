@@ -264,7 +264,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                           onPressed: () async {
                             if ((String var1) {
                               return var1.contains(RegExp(
-                                  r'^(?=.*[a-zA-Z0-9]).{8,}$',
+                                  r'^(?=.*[a-zA-Z])(?=.*\d).{8,}$',
                                   caseSensitive: false));
                             }(_model.textController1.text)) {
                               if (_model.textController1.text ==

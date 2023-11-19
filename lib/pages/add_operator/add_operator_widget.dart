@@ -1033,10 +1033,7 @@ class _AddOperatorWidgetState extends State<AddOperatorWidget> {
                                                             .start,
                                                     children: [
                                                       Text(
-                                                        valueOrDefault<String>(
-                                                          _model.location,
-                                                          'location',
-                                                        ),
+                                                        _model.location,
                                                         style: FlutterFlowTheme
                                                                 .of(context)
                                                             .bodyMedium
@@ -1258,6 +1255,7 @@ class _AddOperatorWidgetState extends State<AddOperatorWidget> {
                                                         dob: _model.dob,
                                                         location: _model.loc,
                                                         status: 'Pending',
+                                                        isdeleted: false,
                                                       ));
                                                   _model.emailSent =
                                                       await actions

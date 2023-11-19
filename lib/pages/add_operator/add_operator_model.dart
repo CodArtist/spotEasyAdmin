@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class AddOperatorModel extends FlutterFlowModel<AddOperatorWidget> {
   ///  Local state fields for this page.
 
-  String location = 'location';
+  String location = ' ';
 
   DateTime? dob;
 

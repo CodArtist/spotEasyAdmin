@@ -70,6 +70,11 @@ class AdminRecord extends FirestoreRecord {
   String get document => _document ?? '';
   bool hasDocument() => _document != null;
 
+  // "isdeleted" field.
+  bool? _isdeleted;
+  bool get isdeleted => _isdeleted ?? false;
+  bool hasIsdeleted() => _isdeleted != null;
+
   void _initializeFields() {
     _username = snapshotData['username'] as String?;
     _lastLogin = snapshotData['last_login'] as DateTime?;
@@ -82,6 +87,7 @@ class AdminRecord extends FirestoreRecord {
     _password = snapshotData['password'] as String?;
     _status = snapshotData['status'] as String?;
     _document = snapshotData['document'] as String?;
+    _isdeleted = snapshotData['isdeleted'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -129,6 +135,7 @@ Map<String, dynamic> createAdminRecordData({
   String? password,
   String? status,
   String? document,
+  bool? isdeleted,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -143,6 +150,7 @@ Map<String, dynamic> createAdminRecordData({
       'password': password,
       'status': status,
       'document': document,
+      'isdeleted': isdeleted,
     }.withoutNulls,
   );
 
@@ -164,7 +172,8 @@ class AdminRecordDocumentEquality implements Equality<AdminRecord> {
         e1?.userType == e2?.userType &&
         e1?.password == e2?.password &&
         e1?.status == e2?.status &&
-        e1?.document == e2?.document;
+        e1?.document == e2?.document &&
+        e1?.isdeleted == e2?.isdeleted;
   }
 
   @override
@@ -179,7 +188,8 @@ class AdminRecordDocumentEquality implements Equality<AdminRecord> {
         e?.userType,
         e?.password,
         e?.status,
-        e?.document
+        e?.document,
+        e?.isdeleted
       ]);
 
   @override

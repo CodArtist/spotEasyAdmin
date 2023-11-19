@@ -1188,6 +1188,7 @@ class _AddNewAdminWidgetState extends State<AddNewAdminWidget> {
                                                               _model.photoUrl,
                                                           document:
                                                               _model.docUrl,
+                                                          isdeleted: false,
                                                         ));
                                                     _model.emailSent =
                                                         await actions

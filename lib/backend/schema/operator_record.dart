@@ -50,6 +50,11 @@ class OperatorRecord extends FirestoreRecord {
   String get status => _status ?? '';
   bool hasStatus() => _status != null;
 
+  // "isdeleted" field.
+  bool? _isdeleted;
+  bool get isdeleted => _isdeleted ?? false;
+  bool hasIsdeleted() => _isdeleted != null;
+
   void _initializeFields() {
     _username = snapshotData['username'] as String?;
     _email = snapshotData['email'] as String?;
@@ -58,6 +63,7 @@ class OperatorRecord extends FirestoreRecord {
     _dob = snapshotData['dob'] as DateTime?;
     _photoUrl = snapshotData['photo_url'] as String?;
     _status = snapshotData['status'] as String?;
+    _isdeleted = snapshotData['isdeleted'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -102,6 +108,7 @@ Map<String, dynamic> createOperatorRecordData({
   DateTime? dob,
   String? photoUrl,
   String? status,
+  bool? isdeleted,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -112,6 +119,7 @@ Map<String, dynamic> createOperatorRecordData({
       'dob': dob,
       'photo_url': photoUrl,
       'status': status,
+      'isdeleted': isdeleted,
     }.withoutNulls,
   );
 
@@ -129,7 +137,8 @@ class OperatorRecordDocumentEquality implements Equality<OperatorRecord> {
         e1?.location == e2?.location &&
         e1?.dob == e2?.dob &&
         e1?.photoUrl == e2?.photoUrl &&
-        e1?.status == e2?.status;
+        e1?.status == e2?.status &&
+        e1?.isdeleted == e2?.isdeleted;
   }
 
   @override
@@ -140,7 +149,8 @@ class OperatorRecordDocumentEquality implements Equality<OperatorRecord> {
         e?.location,
         e?.dob,
         e?.photoUrl,
-        e?.status
+        e?.status,
+        e?.isdeleted
       ]);
 
   @override
