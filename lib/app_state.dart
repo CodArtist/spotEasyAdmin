@@ -77,6 +77,35 @@ class FFAppState extends ChangeNotifier {
     _loggedin = value;
     prefs.setBool('ff_loggedin', value);
   }
+
+  List<String> _Countries = [];
+  List<String> get Countries => _Countries;
+  set Countries(List<String> value) {
+    _Countries = value;
+  }
+
+  void addToCountries(String value) {
+    _Countries.add(value);
+  }
+
+  void removeFromCountries(String value) {
+    _Countries.remove(value);
+  }
+
+  void removeAtIndexFromCountries(int index) {
+    _Countries.removeAt(index);
+  }
+
+  void updateCountriesAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    _Countries[index] = updateFn(_Countries[index]);
+  }
+
+  void insertAtIndexInCountries(int index, String value) {
+    _Countries.insert(index, value);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {

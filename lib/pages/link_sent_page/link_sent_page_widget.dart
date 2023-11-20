@@ -63,7 +63,7 @@ class _LinkSentPageWidgetState extends State<LinkSentPageWidget> {
               Align(
                 alignment: const AlignmentDirectional(0.00, 0.00),
                 child: Text(
-                  'A Link has been sent to Your Email to reset your password',
+                  'A link has been sent to your email to reset your password',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Readex Pro',
                         fontSize: 30.0,
@@ -77,7 +77,7 @@ class _LinkSentPageWidgetState extends State<LinkSentPageWidget> {
                   }
                   context.pushNamed('LoginPage');
                 },
-                text: 'Continue to login',
+                text: 'Continue to Login',
                 options: FFButtonOptions(
                   height: 40.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),

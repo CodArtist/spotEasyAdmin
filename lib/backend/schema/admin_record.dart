@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 
@@ -75,6 +74,31 @@ class AdminRecord extends FirestoreRecord {
   bool get isdeleted => _isdeleted ?? false;
   bool hasIsdeleted() => _isdeleted != null;
 
+  // "Alt_phone_number" field.
+  String? _altPhoneNumber;
+  String get altPhoneNumber => _altPhoneNumber ?? '';
+  bool hasAltPhoneNumber() => _altPhoneNumber != null;
+
+  // "Address" field.
+  String? _address;
+  String get address => _address ?? '';
+  bool hasAddress() => _address != null;
+
+  // "Country" field.
+  String? _country;
+  String get country => _country ?? '';
+  bool hasCountry() => _country != null;
+
+  // "City" field.
+  String? _city;
+  String get city => _city ?? '';
+  bool hasCity() => _city != null;
+
+  // "Postal_Code" field.
+  String? _postalCode;
+  String get postalCode => _postalCode ?? '';
+  bool hasPostalCode() => _postalCode != null;
+
   void _initializeFields() {
     _username = snapshotData['username'] as String?;
     _lastLogin = snapshotData['last_login'] as DateTime?;
@@ -88,6 +112,11 @@ class AdminRecord extends FirestoreRecord {
     _status = snapshotData['status'] as String?;
     _document = snapshotData['document'] as String?;
     _isdeleted = snapshotData['isdeleted'] as bool?;
+    _altPhoneNumber = snapshotData['Alt_phone_number'] as String?;
+    _address = snapshotData['Address'] as String?;
+    _country = snapshotData['Country'] as String?;
+    _city = snapshotData['City'] as String?;
+    _postalCode = snapshotData['Postal_Code'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -136,6 +165,11 @@ Map<String, dynamic> createAdminRecordData({
   String? status,
   String? document,
   bool? isdeleted,
+  String? altPhoneNumber,
+  String? address,
+  String? country,
+  String? city,
+  String? postalCode,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -151,6 +185,11 @@ Map<String, dynamic> createAdminRecordData({
       'status': status,
       'document': document,
       'isdeleted': isdeleted,
+      'Alt_phone_number': altPhoneNumber,
+      'Address': address,
+      'Country': country,
+      'City': city,
+      'Postal_Code': postalCode,
     }.withoutNulls,
   );
 
@@ -173,7 +212,12 @@ class AdminRecordDocumentEquality implements Equality<AdminRecord> {
         e1?.password == e2?.password &&
         e1?.status == e2?.status &&
         e1?.document == e2?.document &&
-        e1?.isdeleted == e2?.isdeleted;
+        e1?.isdeleted == e2?.isdeleted &&
+        e1?.altPhoneNumber == e2?.altPhoneNumber &&
+        e1?.address == e2?.address &&
+        e1?.country == e2?.country &&
+        e1?.city == e2?.city &&
+        e1?.postalCode == e2?.postalCode;
   }
 
   @override
@@ -189,7 +233,12 @@ class AdminRecordDocumentEquality implements Equality<AdminRecord> {
         e?.password,
         e?.status,
         e?.document,
-        e?.isdeleted
+        e?.isdeleted,
+        e?.altPhoneNumber,
+        e?.address,
+        e?.country,
+        e?.city,
+        e?.postalCode
       ]);
 
   @override

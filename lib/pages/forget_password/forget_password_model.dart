@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'forget_password_widget.dart' show ForgetPasswordWidget;
 import 'package:flutter/material.dart';
@@ -12,6 +13,8 @@ class ForgetPasswordModel extends FlutterFlowModel<ForgetPasswordWidget> {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
   int? user;
+  // Stores action output result for [Firestore Query - Query a collection] action in Button widget.
+  AdminRecord? admin;
   // Stores action output result for [Custom Action - generateOtp] action in Button widget.
   int? otp;
   // Stores action output result for [Custom Action - sendOtp] action in Button widget.

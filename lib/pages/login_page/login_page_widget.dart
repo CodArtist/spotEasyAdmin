@@ -123,7 +123,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 ),
                           ),
                           Text(
-                            'Enter your username and password to sign in!',
+                            'Enter your username and password to login',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -137,7 +137,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             padding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 20.0, 0.0, 0.0),
                             child: Text(
-                              'UserName*',
+                              'Email',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -157,7 +157,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               autofocus: true,
                               obscureText: false,
                               decoration: InputDecoration(
-                                hintText: 'mail@simple.com',
+                                hintText: 'Email',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -203,7 +203,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                             ),
                           ),
                           Text(
-                            'Password*',
+                            'Password',
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
@@ -221,7 +221,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               autofocus: true,
                               obscureText: !_model.passwordVisibility,
                               decoration: InputDecoration(
-                                hintText: 'Min. 8 characters',
+                                hintText: 'Password',
                                 hintStyle: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -315,41 +315,64 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       singleRecord: true,
                                     ).then((s) => s.firstOrNull);
                                     shouldSetState = true;
-                                    if (_model.admin?.password ==
-                                        _model.textController2.text) {
-                                      _model.user1 = await queryAdminRecordOnce(
-                                        queryBuilder: (adminRecord) =>
-                                            adminRecord
-                                                .where(
-                                                  'email',
-                                                  isEqualTo: _model
-                                                      .textController1.text,
-                                                )
-                                                .where(
-                                                  'password',
-                                                  isEqualTo: _model
-                                                      .textController2.text,
-                                                ),
-                                        singleRecord: true,
-                                      ).then((s) => s.firstOrNull);
-                                      shouldSetState = true;
-                                      setState(() {
-                                        FFAppState().User =
-                                            _model.user1?.reference;
-                                        FFAppState().loggedin = true;
-                                      });
+                                    if (_model.admin?.status == 'Active') {
+                                      if (_model.admin?.password ==
+                                          _model.textController2.text) {
+                                        _model.user1 =
+                                            await queryAdminRecordOnce(
+                                          queryBuilder: (adminRecord) =>
+                                              adminRecord
+                                                  .where(
+                                                    'email',
+                                                    isEqualTo: _model
+                                                        .textController1.text,
+                                                  )
+                                                  .where(
+                                                    'password',
+                                                    isEqualTo: _model
+                                                        .textController2.text,
+                                                  ),
+                                          singleRecord: true,
+                                        ).then((s) => s.firstOrNull);
+                                        shouldSetState = true;
+                                        setState(() {
+                                          FFAppState().User =
+                                              _model.user1?.reference;
+                                          FFAppState().loggedin = true;
+                                        });
 
-                                      context.goNamed('People');
+                                        context.goNamed('People');
+                                      } else {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Invalid Password',
+                                              style: TextStyle(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                            ),
+                                            duration:
+                                                const Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .error,
+                                          ),
+                                        );
+                                      }
                                     } else {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(
                                         SnackBar(
                                           content: Text(
-                                            'Invalid Password',
+                                            'This user is Inactive',
                                             style: TextStyle(
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
+                                              fontSize: 24.0,
                                             ),
                                           ),
                                           duration:
@@ -403,7 +426,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
 
                                 if (shouldSetState) setState(() {});
                               },
-                              text: 'Sign In',
+                              text: 'Login',
                               options: FFButtonOptions(
                                 width: MediaQuery.sizeOf(context).width * 0.35,
                                 height: 60.0,

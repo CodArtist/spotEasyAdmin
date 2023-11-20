@@ -128,7 +128,8 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                             autofocus: true,
                             obscureText: !_model.passwordVisibility1,
                             decoration: InputDecoration(
-                              hintText: 'Password',
+                              hintText:
+                                  'Password (Min. 8 alpha numeric characters)',
                               hintStyle: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(

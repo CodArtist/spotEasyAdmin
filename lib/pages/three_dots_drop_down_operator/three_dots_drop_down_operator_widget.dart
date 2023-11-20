@@ -129,7 +129,7 @@ class _ThreeDotsDropDownOperatorWidgetState
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   widget.operator?.status == 'Active'
-                                      ? 'Inactivate'
+                                      ? 'Deactivate'
                                       : 'Activate',
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 
 import '/backend/schema/util/firestore_util.dart';
-import '/backend/schema/util/schema_util.dart';
 
 import 'index.dart';
 
@@ -55,6 +54,36 @@ class OperatorRecord extends FirestoreRecord {
   bool get isdeleted => _isdeleted ?? false;
   bool hasIsdeleted() => _isdeleted != null;
 
+  // "phone_number" field.
+  String? _phoneNumber;
+  String get phoneNumber => _phoneNumber ?? '';
+  bool hasPhoneNumber() => _phoneNumber != null;
+
+  // "Alt_phone_number" field.
+  String? _altPhoneNumber;
+  String get altPhoneNumber => _altPhoneNumber ?? '';
+  bool hasAltPhoneNumber() => _altPhoneNumber != null;
+
+  // "Address" field.
+  String? _address;
+  String get address => _address ?? '';
+  bool hasAddress() => _address != null;
+
+  // "Country" field.
+  String? _country;
+  String get country => _country ?? '';
+  bool hasCountry() => _country != null;
+
+  // "City" field.
+  String? _city;
+  String get city => _city ?? '';
+  bool hasCity() => _city != null;
+
+  // "Postal_Code" field.
+  String? _postalCode;
+  String get postalCode => _postalCode ?? '';
+  bool hasPostalCode() => _postalCode != null;
+
   void _initializeFields() {
     _username = snapshotData['username'] as String?;
     _email = snapshotData['email'] as String?;
@@ -64,6 +93,12 @@ class OperatorRecord extends FirestoreRecord {
     _photoUrl = snapshotData['photo_url'] as String?;
     _status = snapshotData['status'] as String?;
     _isdeleted = snapshotData['isdeleted'] as bool?;
+    _phoneNumber = snapshotData['phone_number'] as String?;
+    _altPhoneNumber = snapshotData['Alt_phone_number'] as String?;
+    _address = snapshotData['Address'] as String?;
+    _country = snapshotData['Country'] as String?;
+    _city = snapshotData['City'] as String?;
+    _postalCode = snapshotData['Postal_Code'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -109,6 +144,12 @@ Map<String, dynamic> createOperatorRecordData({
   String? photoUrl,
   String? status,
   bool? isdeleted,
+  String? phoneNumber,
+  String? altPhoneNumber,
+  String? address,
+  String? country,
+  String? city,
+  String? postalCode,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -120,6 +161,12 @@ Map<String, dynamic> createOperatorRecordData({
       'photo_url': photoUrl,
       'status': status,
       'isdeleted': isdeleted,
+      'phone_number': phoneNumber,
+      'Alt_phone_number': altPhoneNumber,
+      'Address': address,
+      'Country': country,
+      'City': city,
+      'Postal_Code': postalCode,
     }.withoutNulls,
   );
 
@@ -138,7 +185,13 @@ class OperatorRecordDocumentEquality implements Equality<OperatorRecord> {
         e1?.dob == e2?.dob &&
         e1?.photoUrl == e2?.photoUrl &&
         e1?.status == e2?.status &&
-        e1?.isdeleted == e2?.isdeleted;
+        e1?.isdeleted == e2?.isdeleted &&
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.altPhoneNumber == e2?.altPhoneNumber &&
+        e1?.address == e2?.address &&
+        e1?.country == e2?.country &&
+        e1?.city == e2?.city &&
+        e1?.postalCode == e2?.postalCode;
   }
 
   @override
@@ -150,7 +203,13 @@ class OperatorRecordDocumentEquality implements Equality<OperatorRecord> {
         e?.dob,
         e?.photoUrl,
         e?.status,
-        e?.isdeleted
+        e?.isdeleted,
+        e?.phoneNumber,
+        e?.altPhoneNumber,
+        e?.address,
+        e?.country,
+        e?.city,
+        e?.postalCode
       ]);
 
   @override

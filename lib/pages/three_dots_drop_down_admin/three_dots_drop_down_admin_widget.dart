@@ -129,7 +129,7 @@ class _ThreeDotsDropDownAdminWidgetState
                                     12.0, 0.0, 0.0, 0.0),
                                 child: Text(
                                   widget.admin?.status == 'Active'
-                                      ? 'Inactivate'
+                                      ? 'Deactivate'
                                       : 'Activate',
                                   style:
                                       FlutterFlowTheme.of(context).bodyMedium,

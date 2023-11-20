@@ -10,16 +10,6 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-// import '../../backend/firebase_storage/storage.dart';
-import '../../flutter_flow/flutter_flow_widgets.dart';
-import '../../flutter_flow/upload_data.dart';
-
-Future<FFUploadedFile> uploadAnyFileType() async {
+Future createCountries() async {
   // Add your function code here!
-
-  final selectedFile = await selectFile(
-      allowedExtensions: ['pdf', 'png', 'jpg', 'jpeg', 'xlxs']);
-  FFUploadedFile f = await FFUploadedFile(
-      bytes: selectedFile!.bytes, name: selectedFile.storagePath.split('/')[3]);
-  return f;
 }
